@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  app_robo_igreja_in:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: container_robo_igreja_in
+    volumes:
+      - /home/arquivos_robos:/arquivos_robos       # pasta do host -> /dados no container
+    environment:
+      - TZ=America/Sao_Paulo
+    command: |
+      /bin/bash -c "
+        echo 'Verificando se main_v6_VPS.py está presente...';
+        if [ -f main_v6_VPS.py ]; then
+            echo 'Arquivo encontrado.';
+        else
+            echo 'Arquivo main_v6_VPS.py NÃO encontrado!';
+            ls -l;
+            exit 1;
+        fi;
+        echo 'Verificando localização do Python...';
+        which python3;
+        echo 'Iniciando main_v6_VPS.py...';
+        python3 -u main_v6_VPS.py ;
+      "
+

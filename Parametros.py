@@ -1,4 +1,4 @@
-import pymysql
+import mysql.connector
 from datetime import date,datetime
 import Conexao as Conectar
    

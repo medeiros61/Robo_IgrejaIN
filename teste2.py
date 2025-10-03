@@ -1,6 +1,13 @@
 
 from configparser import ConfigParser
+import os
 
+caminhoConfig= 'C:\\projetos\\datavix\\robo\\digitadorIN\\config.ini'
+print(caminhoConfig)
+caminhoConfig = os.path.abspath(os.path.join(os.path.dirname(__file__), "config.ini"))
+print(caminhoConfig)
+caminhoConfig = os.path.join(os.path.dirname(__file__), "config.ini")
+print(caminhoConfig)
 
 #ARRAffinity="4158b8cb52670287f6c8ed527deabcf61e852bbce20c1d69134187e490db1687	"
 #SessionID="kt2z4ur1f0tb3pxg1et5rjvo		"
