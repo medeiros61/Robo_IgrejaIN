@@ -99,7 +99,20 @@ def RetIdIgreja(v_Igreja):
     #headers = {'Cookie': 'ASP.NET_SessionId=443jzsicvf3whnbiglkze5pv; ARRAffinity=cb1d004228e5e638cf6f288f7672a0c4c4fb23b09c8f14e08ab3cbc6d50ef4f2; .ASPXAUTH=44760D05C5105FECD69D2F882DE0B5EECBB1C22D674FC0EE56A0701AC42375AF40183BECB1883C5F0144BE9E93A752459E344F23A8431E94234DD93DE6427A4159E0D3B15FC80DDC8BBAB36F6286A43A2BC623F39A3B726CC88FA123256B452E22EC3975BE8D6E437B4D7A1757942F643414AA0026FCF1FFCD766C88C5285C385B839981CCA0999442A150D5FBF8A2D37B0CA557EDB119561B5864D0CAC0681A847BB50EB368633F1EA891DFDFA44458'}
     headers = {'Cookie': 'ASP.NET_SessionId='+ varSessionID + '; ARRAffinity='+ varARRAffinity +'; .ASPXAUTH=' + varAspxauth}
     time.sleep(2)
-    response = requests.request("GET", url, headers=headers, data = payload, timeout=40)
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            response = requests.request("GET", url, headers=headers, data=payload, timeout=40)
+            break
+        except Exception as e:
+            print(f"Erro ao fazer requisição: {e}")
+            if attempt < max_retries - 1:
+                print("Tentando novamente em 2 minutos...")
+                time.sleep(120)
+            else:
+                print("Falha após múltiplas tentativas.")
+                return None
+
     texto = response.text #.encode('utf8')
     txt = "<option value=(.+?)</option>"
     txt = "<option value=(.+?)</option>"
@@ -312,7 +325,11 @@ while True:
     Inicio()
 #    rotinasms()
     #atualizar_cookies_BD()
-    time.sleep(60)
+    for i in range(60, 0, -1):
+        print(f"Aguardando {i} segundos...", end='\r')
+        time.sleep(1)
+    print(" " * 30, end='\r')  # limpa a linha
+
 #fim
 
 
