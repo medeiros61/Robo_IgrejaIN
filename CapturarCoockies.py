@@ -1,3 +1,4 @@
+from requests import options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -10,11 +11,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 def Peguaroscoockies(Arquivo):
     try: 
+        import tempfile
+
         config = ConfigParser()
         # Configurar opções do Chrome
         opcoes = webdriver.ChromeOptions()
         opcoes.add_argument('--headless')
         opcoes.add_experimental_option('excludeSwitches', ['enable-logging'])
+        
+        opcoes.add_argument(f"--user-data-dir={tempfile.mkdtemp()}")  # diretório temporário único
 
         # Configurar o serviço do ChromeDriver usando o WebDriver Manager
         servico = Service(ChromeDriverManager().install())
