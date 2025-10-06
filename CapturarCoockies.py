@@ -1,3 +1,4 @@
+from ssl import Options
 from requests import options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
@@ -16,8 +17,17 @@ def Peguaroscoockies(Arquivo):
         config = ConfigParser()
         # Configurar opções do Chrome
         opcoes = webdriver.ChromeOptions()
-#        opcoes.add_argument('--headless')
-        opcoes.add_experimental_option('excludeSwitches', ['enable-logging'])
+        # Criar um diretório temporário único para o perfil do Chrome
+        user_data_dir = tempfile.mkdtemp(prefix="chrome_profile_")
+
+        # Definir o diretório de perfil do Chrome para evitar conflitos
+        opcoes.add_argument(f"--user-data-dir={user_data_dir}")
+        # Configurações para Linux
+        opcoes.add_argument("--no-sandbox")  # Necessário para Snap em alguns casos
+        opcoes.add_argument("--disable-dev-shm-usage")  # Evita problemas de memória
+        opcoes.add_argument("--headless")  # Descomente para modo sem interface gráfica
+        opcoes.add_argument("--disable-gpu")  # Descomente para modo sem interface gráfica
+#        opcoes.add_experimental_option('excludeSwitches', ['enable-logging'])
         
         opcoes.add_argument(f"--user-data-dir={tempfile.mkdtemp()}")  # diretório temporário único
 
