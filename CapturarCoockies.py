@@ -29,7 +29,7 @@ def Peguaroscoockies(Arquivo):
         opcoes.add_argument("--disable-gpu")  # Descomente para modo sem interface gráfica
 #        opcoes.add_experimental_option('excludeSwitches', ['enable-logging'])
         
-        opcoes.add_argument(f"--user-data-dir={tempfile.mkdtemp()}")  # diretório temporário único
+#        opcoes.add_argument(f"--user-data-dir={tempfile.mkdtemp()}")  # diretório temporário único
 
         # Configurar o serviço do ChromeDriver usando o WebDriver Manager
         servico = Service(ChromeDriverManager().install())
