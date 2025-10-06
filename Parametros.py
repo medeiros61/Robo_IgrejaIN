@@ -1,7 +1,7 @@
 import mysql.connector
 from datetime import date,datetime
 import Conexao as Conectar
-#PRE´PRODUCAO
+#PRE´PRODUCAO NOVO
 #    
 def pegar_parametro(parametro):
     # Conecta ao banco de dados
