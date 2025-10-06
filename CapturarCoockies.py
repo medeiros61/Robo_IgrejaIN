@@ -16,7 +16,7 @@ def Peguaroscoockies(Arquivo):
         config = ConfigParser()
         # Configurar opções do Chrome
         opcoes = webdriver.ChromeOptions()
-        opcoes.add_argument('--headless')
+#        opcoes.add_argument('--headless')
         opcoes.add_experimental_option('excludeSwitches', ['enable-logging'])
         
         opcoes.add_argument(f"--user-data-dir={tempfile.mkdtemp()}")  # diretório temporário único
