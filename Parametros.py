@@ -13,6 +13,7 @@ def pegar_parametro(parametro):
         with conexao.cursor() as cursor:
             ConsultaSQL = f"SELECT `valor` FROM `pyparameter` WHERE `parametro`= '{parametro}'"
             cursor.execute(ConsultaSQL)
+            print(ConsultaSQL)
             results = cursor.fetchone()
 
             return results[0]
@@ -33,6 +34,7 @@ def Atualizar_Parametro(parametro,novovalor):
         with conexao.cursor() as cursor:
                     ConsultaSQL = f"UPDATE `pyparameter` SET valor = '{novovalor}' WHERE `parametro` = '{parametro}'"
                     cursor.execute(ConsultaSQL)
+                    print(f"Parametro {parametro} atualizado para {novovalor}")
                     conexao.commit()
  
 

@@ -327,6 +327,7 @@ def atualizar_cookies_BD():
                 print("Atualizando Cookies...")
                 cc.Peguaroscoockies(caminhoConfig)
     except Exception as e:
+        print(f'Erro ao atualizar cookies no banco de dados: {e}')
         pass   
             
 while True:
