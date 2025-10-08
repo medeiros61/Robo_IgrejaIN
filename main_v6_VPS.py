@@ -282,12 +282,12 @@ def Inicio():
                     if Erro == "True":
                         break
                     os.rename(ArquivoCSV, ArquivoCSVDestino)
-#        print("Processo Finalizado")
+        print("Processo Finalizado")
         data_fim = datetime.now()
         data_inicio_texto = data_inicio.strftime('%d/%m/%Y %H:%M:%S')
         data_fim_texto = data_fim.strftime('%d/%m/%Y %H:%M:%S')
-#        print(data_inicio_texto)
-#        print(data_fim_texto)
+        print(data_inicio_texto)
+        print(data_fim_texto)
     else:
         for p, _, files in os.walk(os.path.abspath(path)):
             for file in files:
